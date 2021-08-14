@@ -5,6 +5,8 @@ public class PrincipalBiblioteca {
     public static void main(String[] args) {
         Biblioteca b1 = new Biblioteca();
         //System.out.println(Biblioteca.libros.get(0).toString());
+        
+        Object[][] resultado3 = b1.listar();
 
         b1.agregar("La sombra del viento", "HUI212", "carlos ruiz", 2001);
 

@@ -13,7 +13,7 @@ public static int precio = 0;
     }
     
     public String info(){
-        return "Moto -" + super.info();
+        return "MOTO -" + super.info();
     }
 
     public String pago() {
