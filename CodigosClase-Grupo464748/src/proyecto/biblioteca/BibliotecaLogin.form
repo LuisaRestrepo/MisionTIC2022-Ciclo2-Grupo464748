@@ -32,14 +32,14 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ingresar" min="-2" pref="145" max="-2" attributes="0"/>
                   <Component id="mostrar" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="usuario" max="32767" attributes="0"/>
                       <Component id="password" pref="195" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="ingresar" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,7 +60,7 @@
               <Component id="mostrar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="ingresar" min="-2" pref="39" max="-2" attributes="0"/>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
