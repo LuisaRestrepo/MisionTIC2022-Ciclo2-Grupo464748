@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto.biblioteca;
+package proyecto.biblioteca.vista;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyecto.biblioteca.modelo.BibliotecasE;
-import proyecto.biblioteca.modelo.Usuario;
+import proyecto.biblioteca.modelo.ResgistroModelo;
 
 /**
  *
@@ -154,14 +154,15 @@ public class BibliotecaRegistro extends javax.swing.JFrame {
         int id = Integer.parseInt(sub);
                 
         try {
-            Usuario.agregarUsuario(n,e,u,c,id);
+            ResgistroModelo.agregarUsuario(n,e,u,c,id);
         } catch (SQLException ex) {
             Logger.getLogger(BibliotecaRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Fallo agregar usuario");
         }
     }//GEN-LAST:event_registrarseActionPerformed
 
     public void inicializarCombo() throws SQLException {
-        ArrayList<BibliotecasE> data = Usuario.cargarBibliotecas();
+        ArrayList<BibliotecasE> data = ResgistroModelo.cargarBibliotecas();
         for (int i = 0; i < data.size(); i++) {
             listaB.addItem(data.get(i).toString());
             //System.out.println(data.get(i));

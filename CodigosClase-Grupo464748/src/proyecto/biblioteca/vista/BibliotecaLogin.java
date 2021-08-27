@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto.biblioteca;
+package proyecto.biblioteca.vista;
 
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -102,28 +106,11 @@ public class BibliotecaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
-        if(mostrar.isSelected()){
-            password.setEchoChar((char)0);
-        }else{
-            password.setEchoChar('*');
-        }
+
     }//GEN-LAST:event_mostrarActionPerformed
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
-        String user = usuario.getText();
-        String pass = new String(password.getPassword());
-        
-        if(user.equals("mintic") && pass.equals("admin123")){
-          JOptionPane.showMessageDialog(this, "Logueo exitoso");
-          new BibliotecaGUI().setVisible(true);
-          this.setVisible(false);
-        } else{
-          //JOptionPane.showMessageDialog(this, "Credenciales inválidas");
-          JOptionPane.showMessageDialog(this, "Credenciales Inválidas", "ERROR!", JOptionPane.ERROR_MESSAGE);
 
-        }
-        usuario.setText("");
-        password.setText("");
     }//GEN-LAST:event_ingresarActionPerformed
 
     /**
@@ -160,6 +147,40 @@ public class BibliotecaLogin extends javax.swing.JFrame {
             }
         });
     }
+
+    public JButton getIngresar() {
+        return ingresar;
+    }
+
+    public void setIngresar(JButton ingresar) {
+        this.ingresar = ingresar;
+    }
+
+    public JCheckBox getMostrar() {
+        return mostrar;
+    }
+
+    public void setMostrar(JCheckBox mostrar) {
+        this.mostrar = mostrar;
+    }
+
+    public JPasswordField getPassword() {
+        return password;
+    }
+
+    public void setPassword(JPasswordField password) {
+        this.password = password;
+    }
+
+    public JTextField getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(JTextField usuario) {
+        this.usuario = usuario;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ingresar;

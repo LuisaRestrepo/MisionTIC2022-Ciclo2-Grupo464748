@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto.biblioteca;
+package proyecto.biblioteca.vista;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import proyecto.biblioteca.Biblioteca;
 
 /**
  *

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import semana6.PasswordUtils;
 
 
-public class Usuario {
+public class ResgistroModelo {
     
     public static ArrayList<BibliotecasE> cargarBibliotecas() throws SQLException{
         Connection con = Conexion.getConexion();

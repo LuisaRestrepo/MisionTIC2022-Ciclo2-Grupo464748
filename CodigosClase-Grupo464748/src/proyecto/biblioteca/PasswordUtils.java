@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto.biblioteca;
+
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -13,8 +9,9 @@ import java.util.Base64;
 import java.util.Random;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-
+ 
 public class PasswordUtils {
+    
     private static final Random RANDOM = new SecureRandom();
     private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static final int ITERATIONS = 10000;
@@ -55,7 +52,7 @@ public class PasswordUtils {
         
         // Generate New secure password with the same salt
         String newSecurePassword = generateSecurePassword(providedPassword, salt);
-        
+        System.out.println("newSecurePassword "+newSecurePassword);
         // Check if two passwords are equal
         returnValue = newSecurePassword.equalsIgnoreCase(securedPassword);
         
