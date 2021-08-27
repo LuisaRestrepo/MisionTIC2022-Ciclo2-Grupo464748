@@ -155,6 +155,8 @@ public class BibliotecaRegistro extends javax.swing.JFrame {
                 
         try {
             ResgistroModelo.agregarUsuario(n,e,u,c,id);
+            new BibliotecaLogin().setVisible(true);
+            this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(BibliotecaRegistro.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Fallo agregar usuario");

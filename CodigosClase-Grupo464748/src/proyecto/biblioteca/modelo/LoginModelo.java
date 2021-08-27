@@ -10,7 +10,7 @@ import proyecto.biblioteca.PasswordUtils;
 
 public class LoginModelo {
 
-    public static void validarUsuario(String usuario, String clave) throws SQLException {
+    public static boolean validarUsuario(String usuario, String clave) throws SQLException {
         Connection con = Conexion.getConexion();
         String query = "SELECT clave,llave FROM bibliotecabd.empleados WHERE usuario = ?;";
         PreparedStatement ps = con.prepareStatement(query);
@@ -36,11 +36,11 @@ public class LoginModelo {
 
         }
         con.close();
-        //return data;
+        return bandera;
     }
 
     public static void main(String[] args) throws SQLException {
-        validarUsuario("prueba", "prueba123");
+        validarUsuario("minticprueba", "minticprueba");
     }
 
 }
