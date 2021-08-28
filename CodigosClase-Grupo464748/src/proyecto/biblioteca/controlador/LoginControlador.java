@@ -40,7 +40,9 @@ public class LoginControlador implements ActionListener {
                     //if (user.equals("mintic") && pass.equals("admin123"))
                     if (LoginModelo.validarUsuario(user,pass)) {
                         JOptionPane.showMessageDialog(vista, "Logueo exitoso");
-                        new BibliotecaGUI().setVisible(true);
+                        int idPerfil = LoginModelo.getPerfil(user);
+                        int idBiblioteca = LoginModelo.getIDBibloteca(user);
+                        new BibliotecaGUI(idPerfil,idBiblioteca).setVisible(true);
                         vista.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(vista, "Credenciales Inválidas", "ERROR!", JOptionPane.ERROR_MESSAGE);

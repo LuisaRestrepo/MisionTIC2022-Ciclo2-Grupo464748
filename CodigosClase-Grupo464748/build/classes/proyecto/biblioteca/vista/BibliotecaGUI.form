@@ -74,8 +74,8 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="titulo" max="32767" attributes="0"/>
                               <Component id="codigo" max="32767" attributes="0"/>
-                              <Component id="autor" max="32767" attributes="0"/>
                               <Component id="anio" pref="143" max="32767" attributes="0"/>
+                              <Component id="autor" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -99,10 +99,10 @@
                       <Component id="codigo" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="autor" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="autor" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -153,8 +153,6 @@
             <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="autor">
-        </Component>
         <Component class="javax.swing.JTextField" name="anio">
         </Component>
         <Component class="javax.swing.JButton" name="agregar">
@@ -167,6 +165,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="autor">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

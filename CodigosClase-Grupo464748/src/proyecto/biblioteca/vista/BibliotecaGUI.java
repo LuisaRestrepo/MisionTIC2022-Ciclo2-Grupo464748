@@ -6,10 +6,17 @@
 package proyecto.biblioteca.vista;
 
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import proyecto.biblioteca.Biblioteca;
+import proyecto.biblioteca.modelo.AutoresE;
+import proyecto.biblioteca.modelo.BibliotecaModelo;
+import proyecto.biblioteca.modelo.LibroE;
 
 /**
  *
@@ -24,12 +31,21 @@ public class BibliotecaGUI extends javax.swing.JFrame {
     public static Object[][] data;
     public static TableModel modelo;
     public static String[] columnas = {"ID", "TITULO", "CODIGO", "AUTOR", "AÑO"};
+    public static int idBiblioteca;
 
-    public BibliotecaGUI() {
+    public BibliotecaGUI(int idPerfil, int idBiblioteca) throws SQLException {
         b1 = new Biblioteca();
+        this.idBiblioteca = idBiblioteca;
         initComponents();
+        actualizarTabla();
         this.getContentPane().setBackground(Color.white);
         setLocationRelativeTo(null);
+        inicializarCombo();
+
+        if (idPerfil == 2) {
+            this.modificar.setVisible(false);
+            this.eliminar.setVisible(false);
+        }
     }
 
     /**
@@ -48,9 +64,9 @@ public class BibliotecaGUI extends javax.swing.JFrame {
         titulo = new javax.swing.JTextField();
         codigo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        autor = new javax.swing.JTextField();
         anio = new javax.swing.JTextField();
         agregar = new javax.swing.JButton();
+        autor = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         buscarID = new javax.swing.JTextField();
@@ -102,8 +118,8 @@ public class BibliotecaGUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(titulo)
                             .addComponent(codigo)
-                            .addComponent(autor)
-                            .addComponent(anio, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))))
+                            .addComponent(anio, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(autor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -119,10 +135,10 @@ public class BibliotecaGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(29, 29, 29)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(autor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(autor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -244,19 +260,39 @@ public class BibliotecaGUI extends javax.swing.JFrame {
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         String titulo1 = titulo.getText();
         String codigo1 = codigo.getText();
-        String autor1 = autor.getText();
+        //String autor1 = autor.getText();
+        
+        String seleccionado = (String) autor.getSelectedItem();
+        int indiceFinal = seleccionado.indexOf(" -");
+        String sub = seleccionado.substring(0,indiceFinal);
+        //System.out.println(sub);
+        int idAutor = Integer.parseInt(sub);
         int anio1 = Integer.parseInt(anio.getText());
 
-        b1.agregar(titulo1, codigo1, autor1, anio1);
-        actualizarTabla();
+        try {
+            //b1.agregar(titulo1, codigo1, autor1, anio1);
+            BibliotecaModelo.agregarLibro(titulo1,codigo1,idAutor,anio1,idBiblioteca);
+            actualizarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(BibliotecaGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         JOptionPane.showMessageDialog(this, "Libro creado", "Info", JOptionPane.INFORMATION_MESSAGE);
         titulo.setText("");
         codigo.setText("");
-        autor.setText("");
+        //autor.setText("");
         anio.setText("");
 
     }//GEN-LAST:event_agregarActionPerformed
 
+    public void inicializarCombo() throws SQLException {
+        ArrayList<AutoresE> data = BibliotecaModelo.cargarAutores();
+        for (int i = 0; i < data.size(); i++) {
+            autor.addItem(data.get(i).toString());
+            //System.out.println(data.get(i));
+        }
+    }
+    
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
         try {
@@ -268,7 +304,7 @@ public class BibliotecaGUI extends javax.swing.JFrame {
             } else {
                 titulo.setText((String) resultado[0][1]);
                 codigo.setText((String) resultado[0][2]);
-                autor.setText((String) resultado[0][3]);
+                //autor.setText((String) resultado[0][3]);
                 anio.setText(String.valueOf(resultado[0][4]));
             }
 
@@ -288,10 +324,10 @@ public class BibliotecaGUI extends javax.swing.JFrame {
             } else {
                 String titulo1 = titulo.getText();
                 String codigo1 = codigo.getText();
-                String autor1 = autor.getText();
+                //String autor1 = autor.getText();
                 int anio1 = Integer.parseInt(anio.getText());
 
-                b1.modificar(id, titulo1, codigo1, autor1, anio1);
+                //b1.modificar(id, titulo1, codigo1, autor1, anio1);
                 JOptionPane.showMessageDialog(this, "Libro modificado", "INFO", JOptionPane.INFORMATION_MESSAGE);
                 actualizarTabla();
             }
@@ -329,7 +365,7 @@ public class BibliotecaGUI extends javax.swing.JFrame {
             } else {
                 titulo.setText((String) resultado[0][1]);
                 codigo.setText((String) resultado[0][2]);
-                autor.setText((String) resultado[0][3]);
+                //autor.setText((String) resultado[0][3]);
                 anio.setText(String.valueOf(resultado[0][4]));
             }
 
@@ -342,10 +378,21 @@ public class BibliotecaGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buscarIDKeyPressed
 
-    public void actualizarTabla() {
-        data = b1.listar();
-        modelo = new DefaultTableModel(data, columnas);
-        tabla.setModel(modelo);
+    public void actualizarTabla() throws SQLException {
+        //data = b1.listar();
+        DefaultTableModel modelo2 = new DefaultTableModel(null, columnas);
+        ArrayList<LibroE> librosC =  BibliotecaModelo.cargarLibros();
+        for(LibroE libro: librosC){
+            String[] registro = new String[5];
+            registro[0] = String.valueOf(libro.getId());
+            registro[1] = libro.getTitulo();
+            registro[2] = libro.getCodigo();
+            registro[3] = libro.getAutor();
+            registro[4] = String.valueOf(libro.getAnio());
+            modelo2.addRow(registro);
+        }
+
+        tabla.setModel(modelo2);
     }
 
     /**
@@ -378,7 +425,11 @@ public class BibliotecaGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BibliotecaGUI().setVisible(true);
+                try {
+                    new BibliotecaGUI(1,1).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(BibliotecaGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -386,7 +437,7 @@ public class BibliotecaGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
     private javax.swing.JTextField anio;
-    private javax.swing.JTextField autor;
+    private javax.swing.JComboBox<String> autor;
     private javax.swing.JButton buscar;
     private javax.swing.JTextField buscarID;
     private javax.swing.JTextField codigo;

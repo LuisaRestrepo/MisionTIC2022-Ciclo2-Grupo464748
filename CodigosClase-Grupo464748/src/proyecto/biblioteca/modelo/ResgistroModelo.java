@@ -56,8 +56,11 @@ public class ResgistroModelo {
         con.close();
     }
     
+
+    
     public static void main(String[] args) throws SQLException {
         //cargarBibliotecas();
-        agregarUsuario("p","p","p","admin123",1);
+        //agregarUsuario("p","p","p","admin123",1);
+
     }
 }
