@@ -19,7 +19,7 @@ public class LoginControlador implements ActionListener {
     public LoginControlador(BibliotecaLogin vista, LoginModelo modelo) {
         this.vista = vista;
         this.modelo = modelo;
-        this.vista.getIngresar().addActionListener(this);
+        this.vista.ingresar.addActionListener(this);
         this.vista.getMostrar().addActionListener(this);
         this.vista.registro.addActionListener(this);
     }
@@ -31,7 +31,8 @@ public class LoginControlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "Ingresar":
+            case "ingresarC":
+                System.out.println("ingrese");
                 String user = this.vista.getUsuario().getText();
                 String pass = new String(this.vista.getPassword().getPassword());
 
@@ -50,10 +51,10 @@ public class LoginControlador implements ActionListener {
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(LoginControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("No funciono");
                 }
             }
-                this.vista.getUsuario().setText("");
-                this.vista.getPassword().setText("");
+            
                 break;
 
             case "Mostrar contraseña":
@@ -73,6 +74,9 @@ public class LoginControlador implements ActionListener {
                     Logger.getLogger(LoginControlador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+                break;
+            default:
+                System.out.println("no ingreso");
                 break;
 
 

@@ -36,10 +36,10 @@ public class BibliotecaGUI extends javax.swing.JFrame {
     public BibliotecaGUI(int idPerfil, int idBiblioteca) throws SQLException {
         b1 = new Biblioteca();
         this.idBiblioteca = idBiblioteca;
-        initComponents();
-        actualizarTabla();
         this.getContentPane().setBackground(Color.white);
         setLocationRelativeTo(null);
+        initComponents();
+        actualizarTabla();
         inicializarCombo();
 
         if (idPerfil == 2) {
@@ -261,22 +261,22 @@ public class BibliotecaGUI extends javax.swing.JFrame {
         String titulo1 = titulo.getText();
         String codigo1 = codigo.getText();
         //String autor1 = autor.getText();
-        
+
         String seleccionado = (String) autor.getSelectedItem();
         int indiceFinal = seleccionado.indexOf(" -");
-        String sub = seleccionado.substring(0,indiceFinal);
+        String sub = seleccionado.substring(0, indiceFinal);
         //System.out.println(sub);
         int idAutor = Integer.parseInt(sub);
         int anio1 = Integer.parseInt(anio.getText());
 
         try {
             //b1.agregar(titulo1, codigo1, autor1, anio1);
-            BibliotecaModelo.agregarLibro(titulo1,codigo1,idAutor,anio1,idBiblioteca);
+            BibliotecaModelo.agregarLibro(titulo1, codigo1, idAutor, anio1, idBiblioteca);
             actualizarTabla();
         } catch (SQLException ex) {
             Logger.getLogger(BibliotecaGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         JOptionPane.showMessageDialog(this, "Libro creado", "Info", JOptionPane.INFORMATION_MESSAGE);
         titulo.setText("");
         codigo.setText("");
@@ -292,7 +292,7 @@ public class BibliotecaGUI extends javax.swing.JFrame {
             //System.out.println(data.get(i));
         }
     }
-    
+
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
         try {
@@ -381,8 +381,8 @@ public class BibliotecaGUI extends javax.swing.JFrame {
     public void actualizarTabla() throws SQLException {
         //data = b1.listar();
         DefaultTableModel modelo2 = new DefaultTableModel(null, columnas);
-        ArrayList<LibroE> librosC =  BibliotecaModelo.cargarLibros();
-        for(LibroE libro: librosC){
+        ArrayList<LibroE> librosC = BibliotecaModelo.cargarLibros();
+        for (LibroE libro : librosC) {
             String[] registro = new String[5];
             registro[0] = String.valueOf(libro.getId());
             registro[1] = libro.getTitulo();
@@ -391,7 +391,6 @@ public class BibliotecaGUI extends javax.swing.JFrame {
             registro[4] = String.valueOf(libro.getAnio());
             modelo2.addRow(registro);
         }
-
         tabla.setModel(modelo2);
     }
 
@@ -426,7 +425,7 @@ public class BibliotecaGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new BibliotecaGUI(1,1).setVisible(true);
+                    new BibliotecaGUI(1, 1).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(BibliotecaGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -109,10 +109,14 @@
     <Component class="javax.swing.JButton" name="ingresar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingresar"/>
+        <Property name="actionCommand" type="java.lang.String" value="ingresarC"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="registro">
       <Properties>

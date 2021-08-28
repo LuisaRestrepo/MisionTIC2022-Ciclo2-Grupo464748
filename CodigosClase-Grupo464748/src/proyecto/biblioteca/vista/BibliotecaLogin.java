@@ -61,6 +61,7 @@ public class BibliotecaLogin extends javax.swing.JFrame {
         });
 
         ingresar.setText("Ingresar");
+        ingresar.setActionCommand("ingresarC");
         ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarActionPerformed(evt);
@@ -203,7 +204,7 @@ public class BibliotecaLogin extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ingresar;
+    public javax.swing.JButton ingresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JCheckBox mostrar;

@@ -13,7 +13,7 @@ public class LoginModelo {
         System.out.println("Usuario>" + usuario);
         System.out.println("Clave>" + clave);
         Connection con = Conexion.getConexion();
-        String query = "SELECT clave,llave FROM bibliotecabd.empleados WHERE usuario = ?;";
+        String query = "SELECT clave,llave FROM empleados WHERE usuario = ?;";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, usuario);
         //System.out.println(ps.toString());
@@ -22,9 +22,9 @@ public class LoginModelo {
         boolean bandera = false;
         if (resultado.next()) {
             String clave2 = resultado.getString(1);
-            System.out.println(clave2);
+            System.out.println("CLAVE:"+clave2);
             String llave = resultado.getString(2);
-            System.out.println(llave);
+            System.out.println("LLAVE:"+llave);
             boolean passwordMatch = PasswordUtils.verifyUserPassword(clave, clave2, llave);
 
             if (passwordMatch) {

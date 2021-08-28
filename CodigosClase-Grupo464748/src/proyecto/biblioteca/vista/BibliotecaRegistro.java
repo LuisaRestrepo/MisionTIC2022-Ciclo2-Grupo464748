@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import proyecto.biblioteca.Principal;
 import proyecto.biblioteca.modelo.BibliotecasE;
 import proyecto.biblioteca.modelo.ResgistroModelo;
 
@@ -155,7 +156,8 @@ public class BibliotecaRegistro extends javax.swing.JFrame {
                 
         try {
             ResgistroModelo.agregarUsuario(n,e,u,c,id);
-            new BibliotecaLogin().setVisible(true);
+            //new BibliotecaLogin().setVisible(true);
+            new Principal();
             this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(BibliotecaRegistro.class.getName()).log(Level.SEVERE, null, ex);

@@ -36,9 +36,9 @@ public class ResgistroModelo {
     public static void agregarUsuario(String n,String e,String u,String c,int id) throws SQLException{
     
         String llave = PasswordUtils.getSalt(10);
+        System.out.println("LLAVE CREADA:"+llave);
         String clave = PasswordUtils.generateSecurePassword(llave, c);
-        System.out.println(llave);
-        System.out.println(clave);
+        System.out.println("CLAVE CREADA:"+clave);
         
         Connection con = Conexion.getConexion();
         String query = "INSERT INTO empleados (nombre, email, usuario, clave, llave,Perfiles_idPerfiles,Bibliotecas_idBibliotecas) VALUES (?,?,?,?,?,?,?);";
